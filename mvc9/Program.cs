@@ -19,6 +19,7 @@ namespace mvc9
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddServerSideBlazor();
 
             var app = builder.Build();
 
@@ -46,6 +47,7 @@ namespace mvc9
                 .WithStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
+            app.MapBlazorHub();
 
             app.Run();
         }
