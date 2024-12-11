@@ -1,0 +1,37 @@
+﻿@implements IDisposable
+
+<div id="clock"><h1>Clock:@currentDateTime </h1></div>
+
+@code {
+    private string currentDateTime = "";
+    private System.Timers.Timer timer = new System.Timers.Timer();
+
+    protected override async Task OnInitializedAsync()
+    {
+        /*
+            I am updating every second
+         */
+        timer.Interval = 1000; 
+        timer.Elapsed += OnTimerTick;
+        timer.Start();
+        await UpdateClock();
+    }
+
+    private async Task UpdateClock()
+    {
+        currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void OnTimerTick(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        InvokeAsync(UpdateClock);
+    }
+
+    public void Dispose()
+    {
+        timer.Stop();
+        timer.Dispose();
+    }
+
+}
