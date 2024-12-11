@@ -1,27 +1,29 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using mvc9;
 using mvc9.Data;
 
 namespace mvc9
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            MoreFeatures.SetupIdentityDB(builder);
+            MoreFeatures.SetupIdentityOptions(builder);
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            builder.Services.AddControllersWithViews();
             builder.Services.AddServerSideBlazor();
 
             var app = builder.Build();
+
+            await MoreFeatures.EnsureDatabaseExist(app);
+
+#if SeedUserData
+                 await MoreFeatures.SeedIdentityUser (app);
+#endif
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -39,6 +41,8 @@ namespace mvc9
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAntiforgery();
+
 
             app.MapStaticAssets();
             app.MapControllerRoute(

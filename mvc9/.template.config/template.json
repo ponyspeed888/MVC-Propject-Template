@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "ponyspeed888",
+  "classifications": [ "web", "asp.net core", "MVC study template" ],
+  "identity": "ponyspeed888.Templates.mvc9-templates",
+  "name": "ponyspeed888 mvc 9 project Templates",
+  "shortName": "ponymvc9",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+
+  "sourceName": "mvc9",
+  "preferNameDirectory": true,
+
+  "symbols": {
+    "httpPort": {
+      "replaces": "5000",
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "5000"
+    },
+    "httpsPort": {
+      "replaces": "44300",
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "44300"
+    },
+
+    "SeedUserData": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+
+
+  "primaryOutputs": [
+
+    { "path": "readme.txt" }
+
+  ],
+
+  "postActions": [
+    {
+      "description": "Opens readme.txt in the editor",
+      "manualInstructions": [ { "text": "open readme.txt" } ],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "0"
+      },
+      "continueOnError": false
+    }
+
+
+
+  ]
+
+
+}

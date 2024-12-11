@@ -15,7 +15,7 @@ namespace mvc9.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("mvc9HomeIndex");
         }
 
         public IActionResult Privacy()
