@@ -5,7 +5,7 @@ This project come from my need to repeatedly creating new .NET Core MVC project 
 2. Add user name and password that must meet strong password requirement
 3. randomized the identity db name
 4. randomized the port of the project
-5. Add blazor server side component to existing razor view
+5. Add Blazor server side component to existing razor view
 
 The project eliminate all these steps.
 1. No need for migration, identity db is already created
@@ -18,6 +18,7 @@ The project eliminate all these steps.
 In addition, this project include 
 
 Code to seed identity user.  The seeded user is a@a.com with single letter password 'a'
+
 Add template.json so that this project can be install as project template
 
 
