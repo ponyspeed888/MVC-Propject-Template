@@ -52,6 +52,7 @@ namespace mvc9
             app.MapRazorPages()
                .WithStaticAssets();
             app.MapBlazorHub();
+            app.MapFallbackToController("Blazor", "Home");
 
             app.Run();
         }
